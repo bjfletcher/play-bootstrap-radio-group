@@ -1,0 +1,59 @@
+@(answers: Seq[String], answerForm: Form[Answer])(implicit messages: Messages)
+
+@main("Quiz") {
+
+  <div class="container">
+
+    <h3>Quiz (Vertical)</h3>
+
+    <!-- VERTICAL -->
+
+    @helper.form(action = routes.Application.post()) {
+
+      <p>Question...</p>
+
+      @answerForm("answer").errors.map { error =>
+        <div class="alert alert-danger">@messages(error.message)</div>
+      }
+
+      @for(answer <- answers) {
+        <div class="radio">
+          <label>
+            <input type="radio" name="answer" value="@answer">
+            @answer
+          </label>
+        </div>
+      }
+
+      <button class="btn btn-default btn-lg">Next</button>
+
+    }
+
+    <!-- HORIZONTAL -->
+
+    <h3>Quiz (Vertical)</h3>
+
+    @helper.form(action = routes.Application.post()) {
+
+      <p>Question...</p>
+
+      @answerForm("answer").errors.map { error =>
+        <div class="alert alert-danger">@messages(error.message)</div>
+      }
+
+      <p>
+      @for(answer <- answers) {
+        <label class="radio-inline">
+          <input type="radio" name="answer" value="@answer">
+          @answer
+        </label>
+      }
+      </p>
+
+      <button class="btn btn-default btn-lg">Next</button>
+
+    }
+
+  </div>
+
+}
